@@ -11,7 +11,7 @@ import simply.Ecommerce.request.LoginRequest;
 @Service
 public interface AuthService {
 
-    void sentLoginOtp(String email, USER_ROLE role) throws UserException, MessagingException;
+    void sentLoginOtp(String email, USER_ROLE role) throws UserException , MessagingException;
     String createUser(SignupRequest req) throws UserException;
     AuthResponse signing(LoginRequest req) throws UserException;
 
