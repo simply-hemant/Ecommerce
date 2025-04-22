@@ -26,17 +26,17 @@ public class SellerServiceImpl implements SellerService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Seller getSellerProfile(String jwt) throws Exception {
+    public Seller getSellerProfile(String jwt) throws SellerException {
         String email = jwtProvider.getEmailFromJwtToken(jwt);
 
         return this.getSellerByEmail(email);
     }
 
     @Override
-    public Seller createSeller(Seller seller) throws Exception {
+    public Seller createSeller(Seller seller) throws SellerException {
         Seller sellerExist = sellerRepo.findByEmail(seller.getEmail());
         if(sellerExist != null){
-            throw new Exception("Seller already exists, use different email");
+            throw new SellerException("Seller already exists, use different email");
         }
 
         Address savedAddress = addressRepo.save(seller.getPickupAddress());
@@ -72,10 +72,10 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller getSellerByEmail(String email) throws Exception {
+    public Seller getSellerByEmail(String email) throws SellerException {
         Seller seller=sellerRepo.findByEmail(email);
         if(seller == null){
-            throw new Exception("seller not found");
+            throw new SellerException("seller not found");
         }
         return seller;
     }
@@ -86,7 +86,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller updateSeller(Long id, Seller seller) throws Exception {
+    public Seller updateSeller(Long id, Seller seller) throws SellerException {
         Seller existingSeller = this.getSellerById(id);
 
         if (seller.getSellerName() != null){
@@ -146,7 +146,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public void deleteSeller(Long id) throws Exception {
+    public void deleteSeller(Long id) throws SellerException {
 
 //        if (sellerRepo.existsById(id)) {
 //            sellerRepo.deleteById(id);
@@ -159,7 +159,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller verifyEmail(String email, String otp) throws Exception{
+    public Seller verifyEmail(String email, String otp) throws SellerException{
 
         Seller seller = this.getSellerByEmail(email);
         seller.setEmailVerified(true);
@@ -168,7 +168,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller updateSellerAccountStatus(Long sellerId, AccountStatus status) throws  Exception {
+    public Seller updateSellerAccountStatus(Long sellerId, AccountStatus status) throws  SellerException {
 
         Seller seller = this.getSellerById(sellerId);
         seller.setAccountStatus(status);

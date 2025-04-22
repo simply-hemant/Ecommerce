@@ -28,13 +28,7 @@ public class AuthController {
     private final UserRepo userRepo;
 
     @PostMapping("/signup")
-  //  public ResponseEntity<User> createUserHandler(@RequestBody SignupRequest req){
-    //        User user = new User();
-//        user.setEmail(req.getEmail());
-//        user.setFirstName(req.getFirstName());
-//        user.setLastName(req.getLastName());
-//
-//        User savedUsers = userRepo.save(user);
+
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody SignupRequest req) throws Exception {
 
         String jwt = authService.createUser(req);

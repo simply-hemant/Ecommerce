@@ -24,7 +24,6 @@ public class PaymentController {
     private final SellerService sellerService;
     private final SellerReportService sellerReportService;
     private final CartRepo cartRepo;
-    private final CartItemRepo cartItemRepo;
 
     @GetMapping("/{paymentId}")
     public ResponseEntity<ApiResponse> paymentSuccessHandler(

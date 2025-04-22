@@ -1,5 +1,6 @@
 package simply.Ecommerce.service;
 
+import simply.Ecommerce.exception.UserException;
 import simply.Ecommerce.model.Cart;
 import simply.Ecommerce.model.Coupon;
 import simply.Ecommerce.model.User;
