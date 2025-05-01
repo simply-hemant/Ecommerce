@@ -87,6 +87,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public Seller updateSeller(Long id, Seller seller) throws SellerException {
+
         Seller existingSeller = this.getSellerById(id);
 
         if (seller.getSellerName() != null){

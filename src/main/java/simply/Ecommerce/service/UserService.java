@@ -9,5 +9,4 @@ public interface UserService {
     public User findUserByJwtToken(String jwt) throws UserException;
 
     User findUserByEmail(String Email) throws UserException;
-
 }
