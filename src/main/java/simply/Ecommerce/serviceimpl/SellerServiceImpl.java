@@ -86,6 +86,7 @@ public class SellerServiceImpl implements SellerService {
         return sellerRepo.findByAccountStatus(status);
     }
 
+
     @Override
     public Seller updateSeller(Long id, Seller seller) throws SellerException {
 
