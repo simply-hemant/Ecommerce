@@ -99,7 +99,6 @@ public class AuthServiceImpl implements AuthService {
             throw new UserException("wrong otp....");
         }
 
-
         User user = userRepo.findByEmail(req.getEmail());
 
         if(user==null){
@@ -151,6 +150,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private Authentication authenticate(String username, String otp) throws UserException {
+
         UserDetails userDetails = customUserService.loadUserByUsername(username);
 
         String SELLER_PREFIX = "seller_";
@@ -171,7 +171,6 @@ public class AuthServiceImpl implements AuthService {
                 null,
                 userDetails.getAuthorities());
     }
-
 
 
 }

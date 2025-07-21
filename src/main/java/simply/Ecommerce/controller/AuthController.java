@@ -28,7 +28,6 @@ public class AuthController {
     private final UserRepo userRepo;
 
     @PostMapping("/signup")
-
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody SignupRequest req) throws Exception {
 
         String jwt = authService.createUser(req);
@@ -64,7 +63,6 @@ public class AuthController {
         }
 
         return ResponseEntity.ok(res);
-
 
     }
 

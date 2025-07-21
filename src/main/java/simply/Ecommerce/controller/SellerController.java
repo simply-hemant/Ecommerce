@@ -32,7 +32,6 @@ public class SellerController {
     private final JwtProvider jwtProvider;
     private final SellerReportService sellerReportService;
 
-
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> sentLoginOtp(
             @RequestBody LoginRequest req) throws Exception {

@@ -176,6 +176,7 @@ public class ProductServiceImpl implements ProductService {
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
+
         Pageable pageable;
 
         if(sort != null && !sort.isEmpty()) {
