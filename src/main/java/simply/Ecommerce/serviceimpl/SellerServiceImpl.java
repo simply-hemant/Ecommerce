@@ -54,8 +54,6 @@ public class SellerServiceImpl implements SellerService {
         newSeller.setBankDetails(seller.getBankDetails());
         newSeller.setBusinessDetails(seller.getBusinessDetails());
 
-
-
         System.out.println(newSeller);
         return sellerRepo.save(newSeller);
     }
