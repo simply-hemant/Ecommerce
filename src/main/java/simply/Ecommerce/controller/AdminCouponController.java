@@ -34,6 +34,7 @@ public class AdminCouponController {
     ) throws Exception
     {
         User user = userService.findUserByJwtToken(jwt);
+
         Cart cart;
 
         if(apply.equals("true")){
@@ -56,7 +57,7 @@ public class AdminCouponController {
         return ResponseEntity.ok(createCoupon);
     }
 
-    @DeleteMapping("/admin/delete/{id}")
+    @DeleteMapping("/admin/delete/{couponId}")
     public ResponseEntity<ApiResponse> deleteCoupon (@PathVariable Long couponId ){
 
         Coupon deleteCoupon = couponService.deleteCoupon(couponId);

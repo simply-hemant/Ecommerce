@@ -70,7 +70,7 @@ public class CartController {
     }
 
     @PutMapping("/item/{cartItemId}")
-    public ResponseEntity<CartItem> updateCartItemhandler(
+    public ResponseEntity<CartItem> updateCartItemHandler(
             @PathVariable Long cartItemId,
             @RequestBody CartItem cartItem,
             @RequestHeader("Authorization") String jwt) throws Exception {

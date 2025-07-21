@@ -34,7 +34,7 @@ public class SellerController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> sentLoginOtp(
+    public ResponseEntity<AuthResponse> LoginByOtp(
             @RequestBody LoginRequest req) throws Exception {
 
         String otp = req.getOtp();

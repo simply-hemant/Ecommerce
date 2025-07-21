@@ -32,7 +32,7 @@ public class HomeCategoryController {
         List<HomeCategory> categories = homeCategoryService.createCategories(homeCategories);
         Home home = homeService.createHomePageData(categories);
 
-        return new ResponseEntity<>(home, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
 
     @GetMapping("/admin/home-category")

@@ -46,7 +46,7 @@ public class SellerOrderController {
 
     }
 
-
+    @DeleteMapping("/{orderId}/delete")
     public ResponseEntity<ApiResponse> deleteOrderHandler(
             @PathVariable Long orderId,
             @RequestHeader("Authorization") String jwt) throws OrderException {

@@ -28,7 +28,7 @@ public class HomeCategoryServiceImpl implements HomeCategoryService {
             return homeCategoryRepo.saveAll(categories);
         }
 
-        return homeCategoryRepo.findAll();
+        return homeCategoryRepo.saveAll(categories);
     }
 
     @Override

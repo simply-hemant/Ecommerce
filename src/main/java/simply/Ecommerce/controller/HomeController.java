@@ -14,6 +14,7 @@ public class HomeController {
     {
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setMessage("welcome to the simply buy");
+        apiResponse.setStatus(true);
         return apiResponse;
     }
 

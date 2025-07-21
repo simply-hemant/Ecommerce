@@ -11,6 +11,7 @@ import simply.Ecommerce.repository.OrderItemRepo;
 import simply.Ecommerce.repository.OrderRepo;
 import simply.Ecommerce.repository.UserRepo;
 import simply.Ecommerce.service.CartService;
+import simply.Ecommerce.service.EmailService;
 import simply.Ecommerce.service.OrderService;
 
 import java.util.*;
@@ -22,10 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepo orderRepo;
     private final AddressRepo addressRepo;
-//    private final UserRepo userRepo;
-//    private final CartService cartService;
     private final OrderItemRepo orderItemRepo;
-
 
     @Override
     public Set<Order> createOrder(User user, Address shippingAddress, Cart cart) {
@@ -81,6 +79,8 @@ public class OrderServiceImpl implements OrderService {
                 savedOrder.getOrderItems().add(orderItem);   //bi directional
 
                 OrderItem createdOrderItem = orderItemRepo.save(orderItem);
+
+                orderItems.add(createdOrderItem);
             }
         }
 
@@ -94,6 +94,7 @@ public class OrderServiceImpl implements OrderService {
         if (opt.isPresent()) {
             return opt.get();
         }
+
 
         throw new OrderException("order not exist with id " + orderId);
     }
@@ -123,15 +124,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order cancelOrder(Long orderId, User user) throws OrderException {
 
-        Order order = findOrderById(orderId);
+        Order order = this.findOrderById(orderId);
 
         if (user.getUserId() != order.getUser().getUserId()) {
-            throw new OrderException("ypu can not perform this action " + orderId);
+            throw new OrderException("you can not perform this action " + orderId);
         }
 
         order.setOrderStatus(OrderStatus.CANCELLED);
 
         return orderRepo.save(order);
+
     }
 
     @Override

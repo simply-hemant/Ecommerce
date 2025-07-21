@@ -43,6 +43,8 @@ public class Address {
     @NotBlank(message = "pinCode is Mandatory")
     private String pinCode;
 
+    @NotNull(message = "mobile should not Blank")
+    @NotBlank(message = "mobile is Mandatory")
     private String mobile;
 
 }

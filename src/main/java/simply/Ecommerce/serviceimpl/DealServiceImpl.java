@@ -1,10 +1,8 @@
 package simply.Ecommerce.serviceimpl;
 
-import com.stripe.model.tax.Registration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import simply.Ecommerce.model.Deal;
-import simply.Ecommerce.model.Home;
 import simply.Ecommerce.model.HomeCategory;
 import simply.Ecommerce.repository.DealRepo;
 import simply.Ecommerce.repository.HomeCategoryRepo;

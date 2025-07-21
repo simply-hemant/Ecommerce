@@ -29,9 +29,9 @@ public class DealController {
 
     @GetMapping
     public ResponseEntity<List<Deal>> getDeals(){
-        List<Deal> deals = dealService.getDeals();
+        List<Deal> getDeals = dealService.getDeals();
 
-        return new ResponseEntity<>(deals, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(getDeals, HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/{id}")
