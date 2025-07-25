@@ -8,11 +8,11 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.zosh</groupId>
+	<groupId>com.simply</groupId>
 	<artifactId>simply</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Ecommerce-multi-vendor</name>
-	<description>Ecommerce multi vendor</description>
+	<name>Simply-Buy</name>
+	<description>Ecommerce</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-ai.version>1.0.0-M1</spring-ai.version>

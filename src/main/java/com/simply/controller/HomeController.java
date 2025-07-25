@@ -21,7 +21,4 @@ public class HomeController {
         return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);
     }
 
-
-
-
 }

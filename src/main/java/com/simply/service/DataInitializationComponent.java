@@ -1,4 +1,4 @@
-package com.simply.services.impl;
+package com.simply.service;
 
 
 import com.simply.domain.USER_ROLE;
@@ -24,13 +24,13 @@ public class DataInitializationComponent implements CommandLineRunner {
     }
 
     private void initializeAdminUser() {
-        String adminUsername = "codewithzosh@gmail.com";
+        String adminUsername = "simply23hemant@gmail.com";
 
         if (userRepository.findByEmail(adminUsername)==null) {
             User adminUser = new User();
 
-            adminUser.setPassword(passwordEncoder.encode("codewithzosh"));
-            adminUser.setFullName("Zosh");
+            adminUser.setPassword(passwordEncoder.encode("codewithsimply"));
+            adminUser.setFullName("simply");
             adminUser.setEmail(adminUsername);
             adminUser.setRole(USER_ROLE.ROLE_ADMIN);
 

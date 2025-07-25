@@ -48,7 +48,6 @@ public class AppConfig {
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
-                        "https://zosh-bazzar-zosh.vercel.app",
                         "http://localhost:3000",
                         "http://localhost:5173"));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
