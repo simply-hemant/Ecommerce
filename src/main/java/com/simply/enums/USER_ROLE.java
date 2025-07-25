@@ -1,4 +1,4 @@
-package com.simply.domain;
+package com.simply.enums;
 
 public enum USER_ROLE {
 	

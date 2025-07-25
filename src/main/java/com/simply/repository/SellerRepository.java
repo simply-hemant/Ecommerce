@@ -1,6 +1,6 @@
 package com.simply.repository;
 
-import com.simply.domain.AccountStatus;
+import com.simply.enums.AccountStatus;
 import com.simply.model.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 

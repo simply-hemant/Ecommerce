@@ -3,6 +3,7 @@ package com.simply.service.impl;
 
 import com.simply.exception.UserException;
 import com.simply.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.simply.repository.PasswordResetTokenRepository;
 import com.simply.repository.UserRepository;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImplementation implements UserService {
 
 
@@ -21,21 +23,7 @@ public class UserServiceImplementation implements UserService {
 	private PasswordEncoder passwordEncoder;
 	private PasswordResetTokenRepository passwordResetTokenRepository;
 	private JavaMailSender javaMailSender;
-	
-	public UserServiceImplementation(
-			UserRepository userRepository,
-			JwtProvider jwtProvider,
-			PasswordEncoder passwordEncoder,
-			PasswordResetTokenRepository passwordResetTokenRepository,
-			JavaMailSender javaMailSender) {
-		
-		this.userRepository=userRepository;
-		this.jwtProvider=jwtProvider;
-		this.passwordEncoder=passwordEncoder;
-		this.passwordResetTokenRepository=passwordResetTokenRepository;
-		this.javaMailSender=javaMailSender;
-		
-	}
+
 
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
@@ -51,8 +39,6 @@ public class UserServiceImplementation implements UserService {
 	}
 
 
-
-	
 	@Override
 	public User findUserByEmail(String username) throws UserException {
 		

@@ -1,7 +1,7 @@
 package com.simply.service;
 
 
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import com.simply.model.User;
 import com.simply.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

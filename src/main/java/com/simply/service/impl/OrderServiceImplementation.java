@@ -1,7 +1,7 @@
 package com.simply.service.impl;
 
-import com.simply.domain.OrderStatus;
-import com.simply.domain.PaymentStatus;
+import com.simply.enums.OrderStatus;
+import com.simply.enums.PaymentStatus;
 import com.simply.exception.OrderException;
 import com.simply.model.*;
 import com.simply.repository.AddressRepository;

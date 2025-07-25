@@ -1,6 +1,6 @@
 package com.simply.repository;
 
-import com.simply.domain.PayoutsStatus;
+import com.simply.enums.PayoutsStatus;
 import com.simply.model.Payouts;
 import org.springframework.data.jpa.repository.JpaRepository;
 

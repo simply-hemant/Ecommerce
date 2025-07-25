@@ -1,7 +1,7 @@
 package com.simply.model;
 
-import com.simply.domain.AccountStatus;
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.AccountStatus;
+import com.simply.enums.USER_ROLE;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -3,7 +3,7 @@ package com.simply.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import com.simply.model.Seller;
 import com.simply.repository.SellerRepository;
 import org.springframework.security.core.GrantedAuthority;

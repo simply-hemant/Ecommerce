@@ -1,7 +1,7 @@
 package com.simply.dto;
 
-import com.simply.domain.OrderStatus;
-import com.simply.domain.PaymentStatus;
+import com.simply.enums.OrderStatus;
+import com.simply.enums.PaymentStatus;
 import com.simply.model.Address;
 import com.simply.model.PaymentDetails;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.simply.controller;
 
-import com.simply.domain.AccountStatus;
+import com.simply.enums.AccountStatus;
 import com.simply.exception.SellerException;
 import com.simply.model.HomeCategory;
 import com.simply.model.Seller;

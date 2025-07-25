@@ -1,6 +1,6 @@
 package com.simply.controller;
 
-import com.simply.domain.PaymentMethod;
+import com.simply.enums.PaymentMethod;
 import com.simply.model.*;
 import com.simply.repository.CartItemRepository;
 import com.simply.repository.CartRepository;

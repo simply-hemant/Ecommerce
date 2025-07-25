@@ -1,6 +1,6 @@
 package com.simply.service.impl;
 
-import com.simply.domain.HomeCategorySection;
+import com.simply.enums.HomeCategorySection;
 import com.simply.model.Deal;
 import com.simply.model.Home;
 import com.simply.model.HomeCategory;

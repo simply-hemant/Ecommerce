@@ -2,9 +2,9 @@ package com.simply.model;
 
 
 
-import com.simply.domain.OrderStatus;
+import com.simply.enums.OrderStatus;
 
-import com.simply.domain.PaymentStatus;
+import com.simply.enums.PaymentStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;

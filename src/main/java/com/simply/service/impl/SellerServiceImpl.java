@@ -1,8 +1,8 @@
 package com.simply.service.impl;
 
 import com.simply.config.JwtProvider;
-import com.simply.domain.AccountStatus;
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.AccountStatus;
+import com.simply.enums.USER_ROLE;
 import com.simply.exception.SellerException;
 import com.simply.model.Address;
 import com.simply.model.Seller;

@@ -1,7 +1,7 @@
 package com.simply.model;
 
-import com.simply.domain.PaymentMethod;
-import com.simply.domain.PaymentOrderStatus;
+import com.simply.enums.PaymentMethod;
+import com.simply.enums.PaymentOrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.simply.domain;
+package com.simply.enums;
 
 public enum AccountStatus {
     PENDING_VERIFICATION, // Account is created but not yet verified

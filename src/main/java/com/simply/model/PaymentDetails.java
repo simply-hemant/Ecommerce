@@ -1,6 +1,6 @@
 package com.simply.model;
 
-import com.simply.domain.PaymentStatus;
+import com.simply.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

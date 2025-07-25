@@ -1,7 +1,7 @@
 package com.simply.service.impl;
 
 import com.simply.config.JwtProvider;
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import com.simply.exception.SellerException;
 import com.simply.exception.UserException;
 import com.simply.model.Cart;
@@ -75,7 +75,7 @@ public class AuthServiceImpl implements AuthService {
         verificationCodeRepository.save(verificationCode);
 
         String subject = "Simply Buy Login/Signup Otp";
-        String text = "your login otp is - ";
+        String text = "your otp is - ";
         emailService.sendVerificationOtpEmail(email, otp, subject, text);
     }
 
@@ -83,9 +83,7 @@ public class AuthServiceImpl implements AuthService {
     public String createUser(SignupRequest req) throws SellerException {
 
         String email = req.getEmail();
-
         String fullName = req.getFullName();
-
         String otp = req.getOtp();
 
         VerificationCode verificationCode = verificationCodeRepository.findByEmail(email);
@@ -102,7 +100,7 @@ public class AuthServiceImpl implements AuthService {
             createdUser.setEmail(email);
             createdUser.setFullName(fullName);
             createdUser.setRole(USER_ROLE.ROLE_CUSTOMER);
-            createdUser.setMobile("9083476123");
+//            createdUser.setMobile("9083476123");
             createdUser.setPassword(passwordEncoder.encode(otp));
 
             System.out.println(createdUser);
@@ -144,13 +142,21 @@ public class AuthServiceImpl implements AuthService {
 
         authResponse.setMessage("Login Success");
         authResponse.setJwt(token);
+        authResponse.setStatus(true);
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
+        String roleName = null;
 
-        String roleName = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
+        for (GrantedAuthority authority : authorities) {
+            roleName = authority.getAuthority();
+            break; // Get only the first role
+        }
 
-
-        authResponse.setRole(USER_ROLE.valueOf(roleName));
+        if (roleName != null) {
+            authResponse.setRole(USER_ROLE.valueOf(roleName));
+        } else {
+            throw new SellerException("User role not found");
+        }
 
         return authResponse;
 

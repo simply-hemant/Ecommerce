@@ -1,6 +1,6 @@
 package com.simply.response;
 
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

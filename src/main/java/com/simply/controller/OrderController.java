@@ -3,7 +3,7 @@ package com.simply.controller;
 import com.razorpay.PaymentLink;
 import com.razorpay.RazorpayException;
 import com.stripe.exception.StripeException;
-import com.simply.domain.PaymentMethod;
+import com.simply.enums.PaymentMethod;
 import com.simply.exception.OrderException;
 import com.simply.exception.SellerException;
 import com.simply.exception.UserException;

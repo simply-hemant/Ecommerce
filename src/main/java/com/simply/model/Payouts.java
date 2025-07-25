@@ -1,6 +1,6 @@
 package com.simply.model;
 
-import com.simply.domain.PayoutsStatus;
+import com.simply.enums.PayoutsStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

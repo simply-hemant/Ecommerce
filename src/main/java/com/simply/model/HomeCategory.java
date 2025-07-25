@@ -1,6 +1,6 @@
 package com.simply.model;
 
-import com.simply.domain.HomeCategorySection;
+import com.simply.enums.HomeCategorySection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

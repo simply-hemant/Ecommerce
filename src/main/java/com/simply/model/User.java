@@ -2,7 +2,7 @@ package com.simply.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import jakarta.persistence.*;
 import lombok.Data;
 

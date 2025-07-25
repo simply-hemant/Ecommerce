@@ -1,7 +1,7 @@
 package com.simply.controller;
 
 
-import com.simply.domain.USER_ROLE;
+import com.simply.enums.USER_ROLE;
 import com.simply.exception.SellerException;
 import com.simply.exception.UserException;
 import com.simply.model.*;
@@ -41,6 +41,7 @@ public class AuthController {
 
         ApiResponse res = new ApiResponse();
         res.setMessage("otp sent");
+        res.setStatus(true);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
@@ -54,6 +55,7 @@ public class AuthController {
         String token = authService.createUser(req);
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(token);
+        authResponse.setStatus(true);
         authResponse.setMessage("Register Success");
         authResponse.setRole(USER_ROLE.ROLE_CUSTOMER);
 

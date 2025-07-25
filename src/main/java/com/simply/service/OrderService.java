@@ -1,6 +1,6 @@
 package com.simply.service;
 
-import com.simply.domain.OrderStatus;
+import com.simply.enums.OrderStatus;
 import com.simply.exception.OrderException;
 import com.simply.model.*;
 import com.simply.model.Order;

@@ -1,6 +1,6 @@
 package com.simply.service;
 
-import com.simply.domain.AccountStatus;
+import com.simply.enums.AccountStatus;
 import com.simply.exception.SellerException;
 import com.simply.model.Seller;
 import java.util.List;

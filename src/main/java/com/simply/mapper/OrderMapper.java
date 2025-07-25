@@ -1,6 +1,6 @@
 package com.simply.mapper;
 
-import com.simply.domain.OrderStatus;
+import com.simply.enums.OrderStatus;
 import com.simply.dto.OrderDto;
 import com.simply.dto.OrderHistory;
 import com.simply.dto.OrderItemDto;
