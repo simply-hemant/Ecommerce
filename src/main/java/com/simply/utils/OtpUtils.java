@@ -8,9 +8,7 @@ public class OtpUtils {
 
         int otpLength = 6;
 
-
         Random random = new Random();
-
 
         StringBuilder otp = new StringBuilder(otpLength);
 
