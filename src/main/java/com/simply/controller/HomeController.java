@@ -14,11 +14,21 @@ public class HomeController {
 
     private final HomeService homeService;
 
-    @GetMapping
-    public ResponseEntity<ApiResponse> home(){
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setMessage("Ecommerce multi vendor system");
-        return new ResponseEntity<>(apiResponse, HttpStatus.ACCEPTED);
-    }
+    @GetMapping("/")
+    public ResponseEntity<String> home() {
+        String html = """
+        <div style='font-family: Arial; font-size: 16px; padding: 20px;'>
+             <strong>Welcome to Simply Buy!</strong><br/><br/>
+             Ecommerce Backend : <span style='color:green;'>Service is Live!</span><br/><br/>
+             Check GitHub for Postman Documentation:<br/>
+            Link :  <a href='https://github.com/simply-hemant/Ecommerce' target='_blank'>
+                https://github.com/simply-hemant/ecommerce-backend
+            </a>
+        </div>
+        """;
 
+        return ResponseEntity.ok()
+                .header("Content-Type", "text/html")
+                .body(html);
+    }
 }
