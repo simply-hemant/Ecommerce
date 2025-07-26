@@ -25,6 +25,7 @@ import java.util.*;
 @Slf4j
 public class GoogleOAuthService {
 
+
     @Value("${spring.security.oauth2.client.registration.google.client-id}")
     private String clientId;
 
