@@ -28,36 +28,45 @@ public class OrderServiceImplementation implements OrderService {
 	private final UserRepository userRepository;
 	private final OrderItemService orderItemService;
 	private final OrderItemRepository orderItemRepository;
-	
+
 
 
 	@Override
 	public Set<Order> createOrder(User user, Address shippAddress, Cart cart) {
-		
+
 //		shippAddress.setUser(user);
 		if(!user.getAddresses().contains(shippAddress)){
 			user.getAddresses().add(shippAddress);
 		}
-
-
 		Address address= addressRepository.save(shippAddress);
 
+		// Group CartItems by Seller ID
+		Map<Long, List<CartItem>> itemsBySeller = new HashMap<>();
+		List<CartItem> cartItemsList = new ArrayList<>(cart.getCartItems());
 
+		for (CartItem item : cartItemsList) {
+			Long sellerId = item.getProduct().getSeller().getId();
+			if (!itemsBySeller.containsKey(sellerId)) {
+				itemsBySeller.put(sellerId, new ArrayList<>());
+			}
+			itemsBySeller.get(sellerId).add(item);
+		}
 
-		Map<Long, List<CartItem>> itemsBySeller = cart.getCartItems().stream()
-				.collect(Collectors.groupingBy(item -> item.getProduct().getSeller().getId()));
+		Set<Order> orders = new HashSet<>();
 
-		Set<Order> orders=new HashSet<>();
+		for (Map.Entry<Long, List<CartItem>> entry : itemsBySeller.entrySet()) {
+			Long sellerId = entry.getKey();
+			List<CartItem> cartItems = entry.getValue();
 
-		for(Map.Entry<Long, List<CartItem>> entry:itemsBySeller.entrySet()){
-			Long sellerId=entry.getKey();
-			List<CartItem> cartItems=entry.getValue();
+			int totalOrderPrice = 0;
+			int totalItem = 0;
 
-			int totalOrderPrice = cartItems.stream()
-					.mapToInt(CartItem::getSellingPrice).sum();
-			int totalItem=cartItems.stream().mapToInt(CartItem::getQuantity).sum();
+			for (CartItem item : cartItems) {
+				totalOrderPrice += item.getSellingPrice();
+				totalItem += item.getQuantity();
+			}
 
-			Order createdOrder=new Order();
+			Order createdOrder = new Order();
 			createdOrder.setUser(user);
 			createdOrder.setSellerId(sellerId);
 			createdOrder.setTotalMrpPrice(totalOrderPrice);
@@ -65,17 +74,20 @@ public class OrderServiceImplementation implements OrderService {
 			createdOrder.setTotalItem(totalItem);
 			createdOrder.setShippingAddress(address);
 			createdOrder.setOrderStatus(OrderStatus.PENDING);
+
+			// Create new PaymentDetails if null
+			if (createdOrder.getPaymentDetails() == null) {
+				createdOrder.setPaymentDetails(new PaymentDetails());
+			}
 			createdOrder.getPaymentDetails().setStatus(PaymentStatus.PENDING);
 
-			Order savedOrder=orderRepository.save(createdOrder);
+			Order savedOrder = orderRepository.save(createdOrder);
 			orders.add(savedOrder);
 
+			List<OrderItem> orderItems = new ArrayList<>();
 
-			List<OrderItem> orderItems=new ArrayList<>();
-
-			for(CartItem item: cartItems) {
-				OrderItem orderItem=new OrderItem();
-
+			for (CartItem item : cartItems) {
+				OrderItem orderItem = new OrderItem();
 				orderItem.setOrder(savedOrder);
 				orderItem.setMrpPrice(item.getMrpPrice());
 				orderItem.setProduct(item.getProduct());
@@ -86,16 +98,13 @@ public class OrderServiceImplementation implements OrderService {
 
 				savedOrder.getOrderItems().add(orderItem);
 
-				OrderItem createdOrderItem=orderItemRepository.save(orderItem);
-
+				OrderItem createdOrderItem = orderItemRepository.save(orderItem);
 				orderItems.add(createdOrderItem);
 			}
-
 		}
-		
+
 		return orders;
-		
-	}
+		}
 
 	@Override
 	public Order findOrderById(Long orderId) throws OrderException {

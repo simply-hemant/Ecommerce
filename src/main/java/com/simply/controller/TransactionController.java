@@ -6,6 +6,7 @@ import com.simply.model.Seller;
 import com.simply.model.Transaction;
 import com.simply.service.SellerService;
 import com.simply.service.TransactionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
+@RequiredArgsConstructor
 public class TransactionController {
 
     private final TransactionService transactionService;
     private final SellerService sellerService;
 
-    @Autowired
-    public TransactionController(TransactionService transactionService, SellerService sellerService) {
-        this.transactionService = transactionService;
-        this.sellerService = sellerService;
-    }
 
     @PostMapping
     public ResponseEntity<Transaction> createTransaction(@RequestBody Order order) {

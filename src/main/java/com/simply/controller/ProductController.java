@@ -19,11 +19,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    private final UserService userService;
-
-    private final SellerService sellerService;
-
-
 
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) throws ProductException {

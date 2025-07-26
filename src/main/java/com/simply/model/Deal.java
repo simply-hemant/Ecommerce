@@ -17,7 +17,7 @@ public class Deal {
     private Long id;
     private Integer discount;
 
-    @OneToOne
+    @ManyToOne
     private HomeCategory category;
 
 

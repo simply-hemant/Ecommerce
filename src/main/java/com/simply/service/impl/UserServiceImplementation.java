@@ -18,12 +18,8 @@ import com.simply.repository.UserRepository;
 public class UserServiceImplementation implements UserService {
 
 
-	private UserRepository userRepository;
-	private JwtProvider jwtProvider;
-	private PasswordEncoder passwordEncoder;
-	private PasswordResetTokenRepository passwordResetTokenRepository;
-	private JavaMailSender javaMailSender;
-
+	private final UserRepository userRepository;
+	private final JwtProvider jwtProvider;
 
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
