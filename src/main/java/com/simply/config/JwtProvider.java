@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
@@ -56,5 +57,17 @@ private static final long JWT_EXPIRATION_MS = 24 * 60 * 60 * 10000; // 10 day
 		}
 		return String.join(",",auths);
 	}
+
+
+	public String generateTokenForOAuth(String email, String role) {
+		return Jwts.builder()
+				.setSubject(email)
+				.claim("role", role)
+				.setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_MS))
+				.signWith(key)
+				.compact();
+	}
+
 
 }
