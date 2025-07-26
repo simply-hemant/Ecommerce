@@ -9,6 +9,7 @@ COPY . .
 # Build the application
 RUN mvn clean package -DskipTests
 
+
 # Stage 2: Run the application
 FROM openjdk:17-jdk-slim
 
