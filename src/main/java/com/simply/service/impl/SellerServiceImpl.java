@@ -1,6 +1,7 @@
 package com.simply.service.impl;
 
 import com.simply.config.JwtProvider;
+import com.simply.dto.SellerResponseDTO;
 import com.simply.enums.AccountStatus;
 import com.simply.enums.USER_ROLE;
 import com.simply.exception.SellerException;
@@ -59,13 +60,22 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller getSellerById(Long id) throws SellerException {
-        Optional<Seller> optionalSeller = sellerRepository.findById(id);
-        if (optionalSeller.isPresent()) {
-            return optionalSeller.get();
-        }
-        throw new SellerException("Seller not found");
+    public SellerResponseDTO getSellerById(Long id) throws SellerException {
+        Seller seller = sellerRepository.findById(id)
+                .orElseThrow(() -> new SellerException("Seller not found with ID: " + id));
+
+        SellerResponseDTO dto = new SellerResponseDTO();
+        dto.setId(seller.getId());
+        dto.setSellerName(seller.getSellerName());
+        dto.setMobile(seller.getMobile());
+        dto.setEmail(seller.getEmail());
+        dto.setEmailVerified(seller.isEmailVerified());
+        dto.setAccountStatus(seller.getAccountStatus());
+        dto.setRole(seller.getRole());
+
+        return dto;
     }
+
 
     @Override
     public Seller getSellerByEmail(String email) throws SellerException {
@@ -78,8 +88,12 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public List<Seller> getAllSellers(AccountStatus status) {
-        return sellerRepository.findByAccountStatus(status);
+        if (status != null) {
+            return sellerRepository.findByAccountStatus(status);
+        }
+        return sellerRepository.findAll();
     }
+
 
     @Override
     public Seller updateSeller(Long id, Seller seller) throws SellerException {
@@ -158,13 +172,22 @@ public class SellerServiceImpl implements SellerService {
     public Seller verifyEmail(String email, String otp) throws SellerException {
         Seller seller = this.getSellerByEmail(email);
         seller.setEmailVerified(true);
+
         return sellerRepository.save(seller);
     }
 
     @Override
     public Seller updateSellerAccountStatus(Long sellerId, AccountStatus status) throws SellerException {
-        Seller seller = this.getSellerById(sellerId);
+        Seller seller = fetchSellerEntityById(sellerId); // ✅ Entity object
         seller.setAccountStatus(status);
-        return sellerRepository.save(seller);
+        return sellerRepository.save(seller);            // ✅ Save works
     }
+
+
+    public Seller fetchSellerEntityById(Long id) throws SellerException {
+        return sellerRepository.findById(id)
+                .orElseThrow(() -> new SellerException("Seller not found with id: " + id));
+    }
+
+
 }

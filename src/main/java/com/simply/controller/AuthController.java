@@ -24,7 +24,6 @@ import com.simply.response.AuthResponse;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

@@ -109,7 +109,7 @@ public class OrderController {
 		User user=userService.findUserProfileByJwt(jwt);
 		Order order=orderService.cancelOrder(orderId,user);
 
-		Seller seller= sellerService.getSellerById(order.getSellerId());
+		Seller seller= sellerService.fetchSellerEntityById(order.getSellerId());
 		SellerReport report=sellerReportService.getSellerReport(seller);
 
 		report.setCanceledOrders(report.getCanceledOrders()+1);

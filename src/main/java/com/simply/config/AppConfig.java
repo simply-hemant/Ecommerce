@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -20,6 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class AppConfig {
 
     @Bean
@@ -27,7 +29,8 @@ public class AppConfig {
 
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(Authorize -> Authorize
-//                		.requestMatchers("/api/admin/**").hasAnyRole("SHOP_OWNER","ADMIN")
+                		.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/sellers/**").hasRole("SELLER")
                                 .requestMatchers("/api/**").authenticated()
                                 .requestMatchers("/api/products/*/reviews").permitAll()
                                 .anyRequest().permitAll()

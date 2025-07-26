@@ -1,6 +1,7 @@
 package com.simply.controller;
 
 import com.simply.config.JwtProvider;
+import com.simply.dto.SellerResponseDTO;
 import com.simply.enums.AccountStatus;
 import com.simply.enums.USER_ROLE;
 import com.simply.exception.SellerException;
@@ -17,6 +18,7 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -55,6 +57,7 @@ public class SellerController {
 
         ApiResponse res = new ApiResponse();
         res.setMessage("otp sent");
+        res.setStatus(true);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
@@ -79,13 +82,22 @@ public class SellerController {
 
         authResponse.setMessage("Login Success");
         authResponse.setJwt(token);
+        authResponse.setStatus(true);
+
+        // Extract role (first one only)
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        String roleName = null;
 
+        for (GrantedAuthority authority : authorities) {
+            roleName = authority.getAuthority();
+            break;
+        }
 
-        String roleName = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
-
-
-        authResponse.setRole(USER_ROLE.valueOf(roleName));
+        if (roleName != null) {
+            authResponse.setRole(USER_ROLE.valueOf(roleName));
+        } else {
+            throw new SellerException("User role not found");
+        }
 
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
     }
@@ -134,10 +146,11 @@ public class SellerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Seller> getSellerById(@PathVariable Long id) throws SellerException {
-        Seller seller = sellerService.getSellerById(id);
-        return new ResponseEntity<>(seller, HttpStatus.OK);
+    public ResponseEntity<SellerResponseDTO> getSellerById(@PathVariable Long id) throws SellerException {
+        SellerResponseDTO response = sellerService.getSellerById(id); // returns DTO
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
     @GetMapping("/profile")
     public ResponseEntity<Seller> getSellerByJwt(
@@ -156,6 +169,7 @@ public class SellerController {
         return new ResponseEntity<>(report, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Seller>> getAllSellers(
             @RequestParam(required = false) AccountStatus status) {

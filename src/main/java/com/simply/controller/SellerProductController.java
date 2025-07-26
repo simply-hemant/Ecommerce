@@ -41,9 +41,7 @@ public class SellerProductController {
     @PostMapping()
     public ResponseEntity<Product> createProduct(
             @RequestBody CreateProductRequest request,
-
-            @RequestHeader("Authorization")String jwt)
-            throws UserException,
+            @RequestHeader("Authorization")String jwt)throws UserException,
             ProductException, CategoryNotFoundException, SellerException {
 
         Seller seller=sellerService.getSellerProfile(jwt);

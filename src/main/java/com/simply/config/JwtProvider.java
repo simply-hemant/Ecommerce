@@ -19,14 +19,18 @@ import io.jsonwebtoken.security.Keys;
 public class JwtProvider {
 	
 	private SecretKey key=Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
-	
+//	private static final long JWT_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 1 day
+private static final long JWT_EXPIRATION_MS = 24 * 60 * 60 * 10000; // 10 day
+
+
+
 	public String generateToken(Authentication auth) {
 		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
 	    String roles = populateAuthorities(authorities);
 
 		String jwt=Jwts.builder()
 				.setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime()+86400000))
+				.setExpiration(new Date(new Date().getTime()+JWT_EXPIRATION_MS))
 				.claim("email",auth.getName())
 				.claim("authorities", roles)
 				.signWith(key)
