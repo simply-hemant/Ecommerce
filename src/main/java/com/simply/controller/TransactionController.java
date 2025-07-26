@@ -21,7 +21,6 @@ public class TransactionController {
     private final TransactionService transactionService;
     private final SellerService sellerService;
 
-
     @PostMapping
     public ResponseEntity<Transaction> createTransaction(@RequestBody Order order) {
         Transaction transaction = transactionService.createTransaction(order);
