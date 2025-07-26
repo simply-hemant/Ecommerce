@@ -29,14 +29,15 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
-    @Value("${stripe.api.key}")
+    @Value("${stripe.api.key:dummy-stripe-key}")
     private String stripeSecretKey;
 
-    @Value("${razorpay.api.key}")
+    @Value("${razorpay.api.key:dummy-razorpay-key}")
     private String apiKey;
 
-    @Value("${razorpay.api.secret}")
+    @Value("${razorpay.api.secret:dummy-razorpay-secret}")
     private String apiSecret;
+
 
 
     private final PaymentOrderRepository paymentOrderRepository;
