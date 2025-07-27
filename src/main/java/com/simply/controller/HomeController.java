@@ -21,8 +21,12 @@ public class HomeController {
              <strong>Welcome to Simply Buy!</strong><br/><br/>
              Ecommerce Backend : <span style='color:green;'>Service is Live!</span><br/><br/>
              Check GitHub for Postman Documentation:<br/>
-            Link :  <a href='https://github.com/simply-hemant/Ecommerce' target='_blank'>
+            Github Link :  <a href='https://github.com/simply-hemant/Ecommerce' target='_blank'>
                 https://github.com/simply-hemant/ecommerce-backend
+            </a>
+            
+            api documentation Link :  <a href='https://documenter.getpostman.com/view/39898850/2sB3B7MYtF' target='_blank'>
+                https://documenter.getpostman.com/view/39898850/2sB3B7MYtF
             </a>
         </div>
         """;
