@@ -26,11 +26,12 @@ import java.util.*;
 public class GoogleOAuthService {
 
 
-    @Value("${spring.security.oauth2.client.registration.google.client-id}")
+    @Value("${google.client-id}")
     private String clientId;
 
-    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
+    @Value("${google.client-secret}")
     private String clientSecret;
+
 
     @Autowired
     private RestTemplate restTemplate;
